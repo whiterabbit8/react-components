@@ -5,6 +5,6 @@ import Search from './components/Search';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Search/>
+    <Search />
   </React.StrictMode>
 );
