@@ -6,6 +6,6 @@ import { ITEMS_PER_PAGE, baseUrl, token } from './utilities/discogsApi';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Search url={baseUrl} token={token} page='1' perPage={ITEMS_PER_PAGE}/>
+    <Search url={baseUrl} token={token} page="1" perPage={ITEMS_PER_PAGE} />
   </React.StrictMode>
 );

@@ -6,7 +6,7 @@ type SearchProps = {
   token: string;
   page: string;
   perPage: string;
-}
+};
 
 export class Search extends Component<SearchProps> {
   state = {
@@ -15,7 +15,7 @@ export class Search extends Component<SearchProps> {
 
   componentDidMount(): void {
     const data = localStorage.getItem('query') as string;
-    data ? this.setState({ query: data }) : this.setState({ query: '' })
+    data ? this.setState({ query: data }) : this.setState({ query: '' });
   }
 
   setStorage = () => {
@@ -23,12 +23,16 @@ export class Search extends Component<SearchProps> {
   };
 
   makeSearch = async () => {
-    const response = await fetch(`${this.props.url}?q=${this.state.query}&artist=${this.state.query}&format=LP+album&per_page=${this.props.perPage}&page=${this.props.page}&token=${this.props.token}`, {
-      method: 'GET',
-    });
+    const searchUrl = this.state.query ? `q=${this.state.query}&artist=${this.state.query}` : '';
+    const response = await fetch(
+      `${this.props.url}?${searchUrl}&format=LP+album&per_page=${this.props.perPage}&page=${this.props.page}&token=${this.props.token}`,
+      {
+        method: 'GET',
+      }
+    );
     const data = await response.json();
     console.log(data);
-  }
+  };
 
   render() {
     return (
@@ -39,10 +43,13 @@ export class Search extends Component<SearchProps> {
           value={this.state.query}
           onChange={(e) => this.setState({ query: e.target.value })}
         />
-        <button className="search-button" onClick={() => {
-          this.setStorage();
-          this.makeSearch();
-        }} />
+        <button
+          className="search-button"
+          onClick={() => {
+            this.setStorage();
+            this.makeSearch();
+          }}
+        />
       </div>
     );
   }
