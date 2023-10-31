@@ -1,6 +1,6 @@
-export interface Album {
-  title: string;
-  year: string;
-  country: string;
-  cover: string;
+export interface Character {
+  name: string;
+  gender: string;
+  species: string;
+  status: string;
 }

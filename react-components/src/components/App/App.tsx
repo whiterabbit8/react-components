@@ -1,9 +1,9 @@
 import { Component } from 'react';
-import Search from '../Search';
+import Search from '../Search/Search';
 
 import './app.scss';
 
-export class App extends Component {
+export default class App extends Component {
   render() {
     return (
       <>

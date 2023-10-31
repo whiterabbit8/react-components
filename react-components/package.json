@@ -12,8 +12,8 @@
     "lint:fix": "eslint . --ext ts,tsx --fix --report-unused-disable-directives",
     "preview": "vite preview",
     "prepare": "cd.. && husky install react-components/.husky",
-    "predeploy" : "npm run build",
-    "deploy" : "gh-pages -d dist"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "react": "^18.2.0",

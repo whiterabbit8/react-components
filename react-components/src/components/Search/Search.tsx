@@ -1,13 +1,15 @@
 import { Component } from 'react';
 
 import './search.scss';
+import { Character } from '../../utilities/types';
+import SearchResults from '../SearchResults/SearchResults';
 
-export class Search extends Component {
+export default class Search extends Component {
   state = {
     query: '',
     baseUrl: 'https://rickandmortyapi.com/api/character/',
     page: 1,
-    data: [],
+    characters: [],
   };
 
   componentDidMount(): void {
@@ -21,14 +23,17 @@ export class Search extends Component {
 
   makeSearch = async (name: string) => {
     const searchValue = name.trim().replace(' ', '+');
-    const searchUrl = name ? `name=${name}` : '';
-    const response = await fetch(`${this.state.baseUrl}?page=${this.state.page}&${searchUrl}`,
+    const searchUrl = name ? `name=${searchValue}` : '';
+    const response = await fetch(
+      `${this.state.baseUrl}?page=${this.state.page}&${searchUrl}`,
       {
         method: 'GET',
       }
     );
     const data = await response.json();
-    console.log(data);
+    const results: Character[] = data.results;
+    this.setState({ characters: results })
+    console.log(this.state.characters);
   };
 
   render() {
@@ -49,6 +54,7 @@ export class Search extends Component {
             }}
           />
         </div>
+        <SearchResults characters={this.state.characters}/>
       </div>
     );
   }

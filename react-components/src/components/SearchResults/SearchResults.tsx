@@ -1,8 +1,24 @@
 import { Component } from 'react';
 import './searchResults.scss';
+import { Character } from '../../utilities/types';
 
-export class SearchResults extends Component<{ [key: string]: string }> {
+type SearchResultsProps = {
+  characters: Character[];
+}
+
+export default class SearchResults extends Component<SearchResultsProps> {
   render() {
-    return <h1>There shold be results</h1>;
+    return (
+      <ul className="results-wrapper">
+        {this.props.characters.map((character: Character) => (
+          <li className='character'>
+            <h3>{character.name}</h3>
+            <p>gender: {character.gender}</p>
+            <p>species: {character.species}</p>
+            <p>status: {character.status}</p>
+          </li>
+        ))}
+      </ul>
+    );
   }
 }
