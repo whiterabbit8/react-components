@@ -2,6 +2,7 @@
   "name": "react-components",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://whiterabbit8.github.io/react-components/",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,7 +11,9 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint . --ext ts,tsx --fix --report-unused-disable-directives",
     "preview": "vite preview",
-    "prepare": "cd.. && husky install react-components/.husky"
+    "prepare": "cd.. && husky install react-components/.husky",
+    "predeploy" : "npm run build",
+    "deploy" : "gh-pages -d dist"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -27,6 +30,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "gh-pages": "^6.0.0",
     "husky": "^8.0.3",
     "prettier": "^3.0.3",
     "sass": "^1.69.5",

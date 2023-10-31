@@ -5,10 +5,8 @@ import './search.scss';
 export class Search extends Component {
   state = {
     query: '',
-    baseUrl: 'https://api.discogs.com/database/search',
-    token: 'QiPSLEgIOHotOkcPbdiIyziqvUXUvoeoPJpjhpng',
-    perPage: '5',
-    page: '1',
+    baseUrl: 'https://rickandmortyapi.com/api/character/',
+    page: 1,
     data: [],
   };
 
@@ -21,11 +19,10 @@ export class Search extends Component {
     localStorage.setItem('query', this.state.query);
   };
 
-  makeSearch = async (artist: string) => {
-    const searchValue = artist.trim().replace(' ', '+');
-    const searchUrl = artist ? `q=${searchValue}&artist=${searchValue}` : '';
-    const response = await fetch(
-      `${this.state.baseUrl}?${searchUrl}&format=LP+album&per_page=${this.state.perPage}&page=${this.state.page}&token=${this.state.token}`,
+  makeSearch = async (name: string) => {
+    const searchValue = name.trim().replace(' ', '+');
+    const searchUrl = name ? `name=${name}` : '';
+    const response = await fetch(`${this.state.baseUrl}?page=${this.state.page}&${searchUrl}`,
       {
         method: 'GET',
       }
@@ -40,7 +37,7 @@ export class Search extends Component {
         <div className="search-wrapper">
           <input
             className="search-input"
-            placeholder="Search artist"
+            placeholder="enter rick and morty character name"
             value={this.state.query}
             onChange={(e) => this.setState({ query: e.target.value })}
           />
