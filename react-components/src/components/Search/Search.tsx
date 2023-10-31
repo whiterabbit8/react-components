@@ -10,11 +10,13 @@ export default class Search extends Component {
     baseUrl: 'https://rickandmortyapi.com/api/character/',
     page: 1,
     characters: [],
+    isLoading: true
   };
 
   componentDidMount(): void {
     const value = localStorage.getItem('query') as string;
     value ? this.setState({ query: value }) : this.setState({ query: '' });
+    this.makeSearch(value).then(() => this.setState({ isLoading: false }));
   }
 
   setStorage = () => {
@@ -22,6 +24,7 @@ export default class Search extends Component {
   };
 
   makeSearch = async (name: string) => {
+    this.setState({ isLoading: true });
     const searchValue = name.trim().replace(' ', '+');
     const searchUrl = name ? `name=${searchValue}` : '';
     const response = await fetch(
@@ -32,8 +35,8 @@ export default class Search extends Component {
     );
     const data = await response.json();
     const results: Character[] = data.results;
-    this.setState({ characters: results })
-    console.log(this.state.characters);
+    this.setState({ characters: results });
+    console.log(results);
   };
 
   render() {
@@ -50,11 +53,12 @@ export default class Search extends Component {
             className="search-button"
             onClick={() => {
               this.setStorage();
-              this.makeSearch(this.state.query);
+              this.makeSearch(this.state.query).then(() => this.setState({ isLoading: false }));
             }}
           />
         </div>
-        <SearchResults characters={this.state.characters}/>
+        {this.state.isLoading && <h2>Loading...</h2>}
+        {!this.state.isLoading && <SearchResults characters={this.state.characters} />}
       </div>
     );
   }
