@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import { Character } from '../../utilities/types';
 import SearchResults from '../SearchResults/SearchResults';
-import ErrorButton from '../ErrorButton/ErrorButton';
 
 import './search.scss';
 
@@ -13,6 +12,7 @@ export default class Search extends Component {
     characters: [],
     isLoading: true,
     hasFound: false,
+    hasError: false
   };
 
   componentDidMount(): void {
@@ -45,6 +45,7 @@ export default class Search extends Component {
   };
 
   render() {
+    if (this.state.hasError) throw new Error('App is crashed!');
     return (
       <div className="container">
         <div className="search-wrapper">
@@ -64,7 +65,7 @@ export default class Search extends Component {
             }}
           />
         </div>
-        <ErrorButton />
+        <button className='error-button' onClick={() => this.setState({ hasError: true })}>Throw Error</button>
         {this.state.isLoading && <h2>Loading...</h2>}
         {!this.state.isLoading && !this.state.hasFound && (
           <h2>Character has not found</h2>
