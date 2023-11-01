@@ -12,7 +12,7 @@ export default class Search extends Component {
     page: 1,
     characters: [],
     isLoading: true,
-    hasFound: false
+    hasFound: false,
   };
 
   componentDidMount(): void {
@@ -64,9 +64,11 @@ export default class Search extends Component {
             }}
           />
         </div>
-        <ErrorButton/>
+        <ErrorButton />
         {this.state.isLoading && <h2>Loading...</h2>}
-        {!this.state.isLoading && !this.state.hasFound && <h2>Character has not found</h2>}
+        {!this.state.isLoading && !this.state.hasFound && (
+          <h2>Character has not found</h2>
+        )}
         {!this.state.isLoading && this.state.hasFound && (
           <SearchResults characters={this.state.characters} />
         )}

@@ -1,6 +1,7 @@
 import { Component } from 'react';
-import './searchResults.scss';
 import { Character } from '../../utilities/types';
+
+import './searchResults.scss';
 
 type SearchResultsProps = {
   characters: Character[];
