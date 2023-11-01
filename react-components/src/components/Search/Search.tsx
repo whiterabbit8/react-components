@@ -1,8 +1,9 @@
 import { Component } from 'react';
-
-import './search.scss';
 import { Character } from '../../utilities/types';
 import SearchResults from '../SearchResults/SearchResults';
+import ErrorButton from '../ErrorButton/ErrorButton';
+
+import './search.scss';
 
 export default class Search extends Component {
   state = {
@@ -11,10 +12,13 @@ export default class Search extends Component {
     page: 1,
     characters: [],
     isLoading: true,
+    hasFound: false
   };
 
   componentDidMount(): void {
-    const value = localStorage.getItem('query') ? localStorage.getItem('query') : '';
+    const value = localStorage.getItem('query')
+      ? localStorage.getItem('query')
+      : '';
     this.setState({ query: value });
     this.makeSearch(value).then(() => this.setState({ isLoading: false }));
   }
@@ -24,7 +28,7 @@ export default class Search extends Component {
   };
 
   makeSearch = async (name: string | null) => {
-    this.setState({ isLoading: true });
+    this.setState({ isLoading: true, hasFound: false });
     const searchUrl = name ? `name=${name.trim().replace(' ', '+')}` : '';
     const response = await fetch(
       `${this.state.baseUrl}?page=${this.state.page}&${searchUrl}`,
@@ -32,10 +36,12 @@ export default class Search extends Component {
         method: 'GET',
       }
     );
-    const data = await response.json();
-    const results: Character[] = data.results;
-    this.setState({ characters: results });
-    console.log(results);
+    if (response.status === 200) {
+      this.setState({ hasFound: true });
+      const data = await response.json();
+      const results: Character[] = data.results;
+      this.setState({ characters: results });
+    }
   };
 
   render() {
@@ -58,8 +64,10 @@ export default class Search extends Component {
             }}
           />
         </div>
+        <ErrorButton/>
         {this.state.isLoading && <h2>Loading...</h2>}
-        {!this.state.isLoading && (
+        {!this.state.isLoading && !this.state.hasFound && <h2>Character has not found</h2>}
+        {!this.state.isLoading && this.state.hasFound && (
           <SearchResults characters={this.state.characters} />
         )}
       </div>
