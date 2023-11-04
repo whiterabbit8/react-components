@@ -2,7 +2,7 @@
   "name": "react-components",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://whiterabbit8.github.io/react-components/",
+  "homepage": "https://whiterabbit8.github.io/react-rss/",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,7 +11,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint . --ext ts,tsx --fix --report-unused-disable-directives",
     "preview": "vite preview",
-    "prepare": "cd.. && husky install react-components/.husky",
+    "prepare": "cd.. && husky install react-rss/.husky",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
