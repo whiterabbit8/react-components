@@ -6,7 +6,9 @@ type SearchResultsProps = {
   characters: Character[];
 };
 
-export default function SearchResults({characters}: SearchResultsProps): JSX.Element {
+export default function SearchResults({
+  characters,
+}: SearchResultsProps): JSX.Element {
   return (
     <ul className="results-wrapper">
       {characters.map((character: Character) => (
