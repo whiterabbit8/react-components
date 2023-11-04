@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState } from 'react';
+
+import './SearchInput.scss';
 
 export default function SearchInput(query: string): JSX.Element {
   const [value, setValue] = useState('');
 
   return (
-    <div className="container">
+    <>
       <div className="search-wrapper">
         <input
           className="search-input"
@@ -17,6 +19,6 @@ export default function SearchInput(query: string): JSX.Element {
           onClick={() => localStorage.setItem('query', value)}
         />
       </div>
-    </div>
-  )
+    </>
+  );
 }
