@@ -17,6 +17,8 @@ export default function Pagination({
 
   useEffect(() => {
     navigate(`../?page=${active}`);
+    // There shouldn't be any dependencies but linter warns
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

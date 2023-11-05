@@ -4,7 +4,7 @@ import Search from '../Search/Search';
 export default function AppRouter(): JSX.Element {
   return (
     <Routes>
-      <Route path='/' element={<Search />} />
+      <Route path="/" element={<Search />} />
     </Routes>
-  )
+  );
 }
