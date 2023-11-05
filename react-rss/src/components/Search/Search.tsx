@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import { Character } from '../../utilities/types';
 import SearchResults from '../SearchResults/SearchResults';
 import SearchInput from '../SearchInput/SearchInput';

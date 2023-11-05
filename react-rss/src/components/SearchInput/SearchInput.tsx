@@ -46,6 +46,7 @@ export default function SearchInput({
 
   useEffect(() => {
     makeSearch(query);
+    // There shouldn't be any dependencies but linter warns
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

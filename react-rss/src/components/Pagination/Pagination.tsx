@@ -1,4 +1,6 @@
+import { useNavigate } from 'react-router-dom';
 import './pagination.scss';
+import { useEffect } from 'react';
 
 type PaginationProps = {
   active: number;
@@ -11,6 +13,12 @@ export default function Pagination({
   total,
   setPage,
 }: PaginationProps): JSX.Element {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate(`../?page=${active}`);
+  }, []);
+
   return (
     <div className="pagination">
       <button className="pagination-btn" onClick={() => setPage(1)}>
