@@ -1,14 +1,14 @@
-import Search from '../Search/Search';
+import { BrowserRouter } from 'react-router-dom';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
 import './app.scss';
-import { BrowserRouter } from 'react-router-dom';
+import AppRouter from '../AppRouter/AppRouter';
 
 export default function App(): JSX.Element {
   return (
     <ErrorBoundary>
       <BrowserRouter>
-        <Search />
+        <AppRouter />
       </BrowserRouter>
     </ErrorBoundary>
   );

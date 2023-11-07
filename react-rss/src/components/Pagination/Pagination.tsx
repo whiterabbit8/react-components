@@ -1,49 +1,52 @@
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 import './pagination.scss';
-import { useEffect } from 'react';
 
 type PaginationProps = {
-  active: number;
-  total: number;
+  page: number;
   setPage: React.Dispatch<React.SetStateAction<number>>;
+  pageQuantity: number | undefined;
 };
 
 export default function Pagination({
-  active,
-  total,
+  page,
   setPage,
+  pageQuantity,
 }: PaginationProps): JSX.Element {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    navigate(`../?page=${active}`);
-    // There shouldn't be any dependencies but linter warns
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
     <div className="pagination">
-      <button className="pagination-btn" onClick={() => setPage(1)}>
-        &lt;&lt;
-      </button>
-      <button
-        className="pagination-btn"
-        onClick={() => setPage(active - 1)}
-        disabled={active === 1}
-      >
-        &lt;
-      </button>
-      <div className="page-number">{active}</div>
-      <button
-        className="pagination-btn"
-        onClick={() => setPage(active + 1)}
-        disabled={active === total}
-      >
-        &gt;
-      </button>
-      <button className="pagination-btn" onClick={() => setPage(total)}>
-        &gt;&gt;
-      </button>
+      <Link to={'?page=1'}>
+        <button className="pagination-btn" onClick={() => setPage(1)}>
+          &lt;&lt;
+        </button>
+      </Link>
+      <Link to={`?page=${page - 1}`}>
+        <button
+          disabled={page === 1}
+          className="pagination-btn"
+          onClick={() => setPage(page - 1)}
+        >
+          &lt;
+        </button>
+      </Link>
+      <div className="page-number">{page}</div>
+      <Link to={`?page=${page + 1}`}>
+        <button
+          disabled={page === pageQuantity}
+          className="pagination-btn"
+          onClick={() => setPage(page + 1)}
+        >
+          &gt;
+        </button>
+      </Link>
+      <Link to={`?page=${pageQuantity}`}>
+        <button
+          className="pagination-btn"
+          onClick={() => setPage(pageQuantity as number)}
+        >
+          &gt;&gt;
+        </button>
+      </Link>
     </div>
   );
 }
