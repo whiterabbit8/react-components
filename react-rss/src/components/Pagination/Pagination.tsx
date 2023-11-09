@@ -1,52 +1,67 @@
-import { Link } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 import './pagination.scss';
 
 type PaginationProps = {
-  page: number;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
   pageQuantity: number | undefined;
 };
 
 export default function Pagination({
-  page,
-  setPage,
   pageQuantity,
 }: PaginationProps): JSX.Element {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const setPage = (page?: string) => {
+    let pageNumber = 0;
+    const currPage = Number(searchParams.get('page'));
+    switch(page) {
+      case 'prev':
+        pageNumber = currPage - 1;
+        break;
+      case 'next':
+        pageNumber = currPage + 1;
+        break;
+      case 'last':
+        pageNumber = pageQuantity as number;
+        break;
+      default:
+        pageNumber = 1;
+    }
+    searchParams.set('page', `${pageNumber}`);
+    setSearchParams(searchParams);
+  }
+
   return (
     <div className="pagination">
-      <Link to={'?page=1'}>
-        <button className="pagination-btn" onClick={() => setPage(1)}>
-          &lt;&lt;
-        </button>
-      </Link>
-      <Link to={`?page=${page - 1}`}>
-        <button
-          disabled={page === 1}
-          className="pagination-btn"
-          onClick={() => setPage(page - 1)}
-        >
-          &lt;
-        </button>
-      </Link>
-      <div className="page-number">{page}</div>
-      <Link to={`?page=${page + 1}`}>
-        <button
-          disabled={page === pageQuantity}
-          className="pagination-btn"
-          onClick={() => setPage(page + 1)}
-        >
-          &gt;
-        </button>
-      </Link>
-      <Link to={`?page=${pageQuantity}`}>
-        <button
-          className="pagination-btn"
-          onClick={() => setPage(pageQuantity as number)}
-        >
-          &gt;&gt;
-        </button>
-      </Link>
+      <button
+        disabled={searchParams.get('page') === '1'}
+        className="pagination-btn"
+        onClick={() => setPage()}
+      >
+        &lt;&lt;
+      </button>
+      <button
+        disabled={searchParams.get('page') === '1'}
+        className="pagination-btn"
+        onClick={() => setPage('prev')}
+      >
+        &lt;
+      </button>
+      <div className="page-number">{searchParams.get('page')}</div>
+      <button
+        disabled={searchParams.get('page') === `${pageQuantity}`}
+        className="pagination-btn"
+        onClick={() => setPage('next')}
+      >
+        &gt;
+      </button>
+      <button
+        disabled={searchParams.get('page') === `${pageQuantity}`}
+        className="pagination-btn"
+        onClick={() => setPage('last')}
+      >
+        &gt;&gt;
+      </button>
     </div>
   );
 }

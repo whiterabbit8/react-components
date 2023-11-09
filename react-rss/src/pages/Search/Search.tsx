@@ -1,16 +1,27 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Outlet, useSearchParams } from 'react-router-dom';
 import SearchResults from '../../components/SearchResults/SearchResults';
 import SearchInput from '../../components/SearchInput/SearchInput';
 import { ResultData } from '../../utilities/types';
-import getCharacters from '../../utilities/api';
+import { getCharacters } from '../../utilities/api';
 
 import './search.scss';
+import ErrorButton from '../../components/ErrorButton/ErrorButton';
 
 export default function Search(): JSX.Element {
   const [isLoading, setLoading] = useState(true);
-  const [hasError, setError] = useState(false);
   const [resultData, setResultData] = useState<ResultData>();
   const [success, setSuccess] = useState(false);
+  const [searchParams] = useSearchParams();
+  const [style, setStyle] = useState('');
+
+  useEffect(() => {
+    if (searchParams.get('id')) {
+      setStyle('container details')
+    } else {
+      setStyle('container');
+    }
+  }, [searchParams]);
 
   const makeSearch = (page = 1) => {
     setLoading(true);
@@ -25,20 +36,17 @@ export default function Search(): JSX.Element {
     });
   };
 
-  if (hasError) throw new Error('App is crashed!');
-
   return (
-    <div className="container">
+    <div className={style}>
       <SearchInput makeSearch={makeSearch} />
-      <button className="error-button" onClick={() => setError(true)}>
-        Throw Error
-      </button>
+      <ErrorButton/>
       <SearchResults
         loadPage={makeSearch}
         isLoading={isLoading}
         resultData={resultData}
         success={success}
       />
+      {searchParams.get('id') && <Outlet/>}
     </div>
   );
 }

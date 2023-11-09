@@ -1,8 +1,8 @@
 import { ResultData } from './types';
 
-const baseUrl = 'https://rickandmortyapi.com/api/character/';
+export const baseUrl = 'https://rickandmortyapi.com/api/character/';
 
-const getCharacters = async (
+export const getCharacters = async (
   name: string | null,
   page = 1
 ): Promise<ResultData> => {
@@ -14,5 +14,3 @@ const getCharacters = async (
   console.log(data);
   return data;
 };
-
-export default getCharacters;

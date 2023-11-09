@@ -1,17 +1,14 @@
-.error-button {
-  margin-bottom: 2em;
-  padding: 0.5em 1em;
-  font-family: 'Roboto', sans-serif;
-  font-size: 1em;
-  color: #e6e6e6;
-  border: none;
-  border-radius: 1.25em;
-  background-color: #000;
-  opacity: 0.6;
-  transition: 0.3s;
+.container {
+  display: grid;
+  grid-template-areas:
+    "searchbar"
+    "error-button"
+    "results";
 
-  &:hover {
-    cursor: pointer;
-    opacity: 0.8;
+  &.details {
+    grid-template-areas:
+      "searchbar details"
+      "error-button details"
+      "results details";
   }
 }

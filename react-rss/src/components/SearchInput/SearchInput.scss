@@ -4,7 +4,9 @@
     display: flex;
     width: 75%;
     gap: 20px;
+    margin: 0 auto;
     margin-top: 1em;
+    grid-area: searchbar;
   }
 
   &-input {

@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import Pagination from '../Pagination/Pagination';
 import { Character, ResultData } from '../../utilities/types';
 
 import './searchResults.scss';
-import { useNavigate } from 'react-router-dom';
 
 type SearchResultsProps = {
   loadPage: (page: number) => void;
@@ -18,21 +18,12 @@ export default function SearchResults({
   resultData,
   success,
 }: SearchResultsProps): JSX.Element {
-  const [page, setPage] = useState(1);
-
-  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams({ page: '1' });
 
   useEffect(() => {
-    navigate(`/react-rss/?page=${page}`);
-    // There shouldn't be any dependencies but linter warns
+    loadPage(Number(searchParams.get('page')));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    loadPage(page);
-    // There shouldn't be dependencies anymore but linter warns
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page]);
+  }, [searchParams]);
 
   if (isLoading) {
     return <h2>Loading...</h2>;
@@ -43,10 +34,16 @@ export default function SearchResults({
   }
 
   return (
-    <>
+    <div className='search-results'>
       <ul className="results-wrapper">
         {resultData?.results.map((character: Character) => (
-          <li className="character" key={character.id}>
+          <li
+            className="character"
+            key={character.id}
+            onClick={() => {
+              searchParams.set('id', `${character.id}`)
+              setSearchParams(searchParams);
+              }}>
             <h3>{character.name}</h3>
             <p>gender: {character.gender}</p>
             <p>species: {character.species}</p>
@@ -55,10 +52,8 @@ export default function SearchResults({
         ))}
       </ul>
       <Pagination
-        page={page}
-        setPage={setPage}
         pageQuantity={resultData?.info.pages}
       />
-    </>
+    </div>
   );
 }
