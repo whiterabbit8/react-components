@@ -13,6 +13,7 @@
 
 .container {
   display: grid;
+  grid-template-rows: 88px 72px auto;
   grid-template-areas:
     'searchbar'
     'error-button'

@@ -11,17 +11,20 @@
     height: 2em;
     border-radius: 50%;
     border: none;
-    background: $blue-color;
+    background: $orange-color;
     font-family: 'Poppins', sans-serif;
     color: $font-color;
     font-size: 1em;
     font-weight: 700;
-    opacity: 0.8;
     transition: 0.2s;
 
     &:not(:disabled):hover {
       cursor: pointer;
-      opacity: 1;
+      background: $orange-dark;
+    }
+
+    &:disabled {
+      opacity: 0.7;
     }
   }
 
@@ -32,7 +35,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background: $blue-color;
+    background: $orange-color;
     color: $font-color;
     font-size: 1.1em;
     font-weight: 700;

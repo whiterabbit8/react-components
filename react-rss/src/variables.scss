@@ -7,6 +7,8 @@ $font-transpatent: #b3cac9;
 $alive-color: #009d3d;
 $dead-color: #d22e2b;
 $unknown-color: #0089ff;
+$orange-color: #f96e4d;
+$orange-dark: #db5e3f;
 
 %status {
   padding: 0 5px;
@@ -23,7 +25,6 @@ $unknown-color: #0089ff;
   color: $font-color;
   border: none;
   border-radius: 1.25em;
-  background-color: $blue-color;
-  opacity: 0.8;
+  background-color: $orange-color;
   transition: 0.3s;
 }

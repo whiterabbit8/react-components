@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import Loader from '../App/Loader/Loader';
 import Pagination from '../Pagination/Pagination';
 import { Character, ResultData } from '../../utilities/types';
 
@@ -28,7 +29,7 @@ export default function SearchResults({
   }, [searchParams]);
 
   if (isLoading) {
-    return <h2>Loading...</h2>;
+    return <Loader />;
   }
 
   if (!resultData && !success) {
