@@ -7,6 +7,7 @@ import { Character, ResultData } from '../../utilities/types';
 import location from '../../assets/location.svg';
 
 import './searchResults.scss';
+import NotFound from '../NotFound/NotFound';
 
 type SearchResultsProps = {
   loadPage: (page: number) => void;
@@ -32,8 +33,8 @@ export default function SearchResults({
     return <Loader />;
   }
 
-  if (!resultData && !success) {
-    return <h2>Character has not found</h2>;
+  if (!success) {
+    return <NotFound />;
   }
 
   return (

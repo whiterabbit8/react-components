@@ -8,7 +8,7 @@ import { getCharacters } from '../../utilities/api';
 
 import logo from '../../assets/logo.svg';
 
-import './search.scss';
+import './home.scss';
 
 export default function Search(): JSX.Element {
   const [isLoading, setLoading] = useState(true);

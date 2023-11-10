@@ -1,11 +1,11 @@
 import { Routes, Route } from 'react-router';
-import Search from '../../pages/Search/Search';
+import Home from '../../pages/Home/Home';
 import Details from '../Details/Details';
 
 export default function AppRouter(): JSX.Element {
   return (
     <Routes>
-      <Route path="/*" element={<Search />}>
+      <Route path="/*" element={<Home />}>
         <Route path=":id" element={<Details />} />
       </Route>
     </Routes>
