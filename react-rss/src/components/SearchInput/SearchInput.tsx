@@ -22,7 +22,6 @@ export default function SearchInput({
 
   useEffect(() => {
     makeSearch();
-    // There shouldn't be any dependencies but linter warns
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -32,14 +31,14 @@ export default function SearchInput({
   };
 
   return (
-    <div className="search-wrapper">
+    <div className="search-bar">
       <input
-        className="search-input"
-        placeholder="enter rick and morty character name"
+        className="search-bar__input"
+        placeholder="enter character name"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
-      <button className="search-button" onClick={handleClick} />
+      <button className="search-bar__button" onClick={handleClick} />
     </div>
   );
 }

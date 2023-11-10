@@ -1,19 +1,22 @@
+@import '../../variables.scss';
+
 .pagination {
   display: flex;
   align-items: center;
   gap: 0.5em;
-  margin: 1em auto;
+  margin: 2em auto;
 
-  &-btn {
+  &__btn {
     width: 2em;
     height: 2em;
     border-radius: 50%;
-    border: 2px solid #c1c1c1;
-    background: transparent;
-    font-family: 'Roboto', sans-serif;
-    color: #000;
+    border: none;
+    background: $blue-color;
+    font-family: 'Poppins', sans-serif;
+    color: $font-color;
     font-size: 1em;
-    opacity: 0.6;
+    font-weight: 700;
+    opacity: 0.8;
     transition: 0.2s;
 
     &:not(:disabled):hover {
@@ -21,17 +24,17 @@
       opacity: 1;
     }
   }
-}
 
-.page-number {
-  width: 2em;
-  height: 2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  border: 2px solid #c1c1c1;
-  background: transparent;
-  color: #000;
-  font-size: 1em;
+  &__page-number {
+    width: 2em;
+    height: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: $blue-color;
+    color: $font-color;
+    font-size: 1.1em;
+    font-weight: 700;
+  }
 }

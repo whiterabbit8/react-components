@@ -1,20 +1,13 @@
-.error-button {
+@import '../../variables.scss';
+
+.error-btn {
   margin: 0 auto;
   margin-bottom: 2em;
-  padding: 0.5em 1em;
-  width: fit-content;
-  font-family: 'Roboto', sans-serif;
-  font-size: 1em;
-  color: #e6e6e6;
-  border: none;
-  border-radius: 1.25em;
-  background-color: #000;
-  opacity: 0.6;
-  transition: 0.3s;
+  @extend %button;
   grid-area: error-button;
 
   &:hover {
     cursor: pointer;
-    opacity: 0.8;
+    opacity: 1;
   }
 }

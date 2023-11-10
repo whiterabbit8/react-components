@@ -14,7 +14,7 @@ export default function Pagination({
   const setPage = (page?: string) => {
     let pageNumber = 0;
     const currPage = Number(searchParams.get('page'));
-    switch(page) {
+    switch (page) {
       case 'prev':
         pageNumber = currPage - 1;
         break;
@@ -29,35 +29,35 @@ export default function Pagination({
     }
     searchParams.set('page', `${pageNumber}`);
     setSearchParams(searchParams);
-  }
+  };
 
   return (
     <div className="pagination">
       <button
         disabled={searchParams.get('page') === '1'}
-        className="pagination-btn"
+        className="pagination__btn"
         onClick={() => setPage()}
       >
         &lt;&lt;
       </button>
       <button
         disabled={searchParams.get('page') === '1'}
-        className="pagination-btn"
+        className="pagination__btn"
         onClick={() => setPage('prev')}
       >
         &lt;
       </button>
-      <div className="page-number">{searchParams.get('page')}</div>
+      <div className="pagination__page-number">{searchParams.get('page')}</div>
       <button
         disabled={searchParams.get('page') === `${pageQuantity}`}
-        className="pagination-btn"
+        className="pagination__btn"
         onClick={() => setPage('next')}
       >
         &gt;
       </button>
       <button
         disabled={searchParams.get('page') === `${pageQuantity}`}
-        className="pagination-btn"
+        className="pagination__btn"
         onClick={() => setPage('last')}
       >
         &gt;&gt;

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 import './errorButton.scss';
 
@@ -8,8 +8,8 @@ export default function ErrorButton(): JSX.Element {
   if (hasError) throw new Error('App is crashed!');
 
   return (
-    <button className="error-button" onClick={() => setError(true)}>
+    <button className="error-btn" onClick={() => setError(true)}>
       Throw Error
     </button>
-  )
+  );
 }

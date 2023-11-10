@@ -3,6 +3,8 @@ import { useSearchParams } from 'react-router-dom';
 import Pagination from '../Pagination/Pagination';
 import { Character, ResultData } from '../../utilities/types';
 
+import location from '../../assets/location.svg';
+
 import './searchResults.scss';
 
 type SearchResultsProps = {
@@ -34,26 +36,39 @@ export default function SearchResults({
   }
 
   return (
-    <div className='search-results'>
-      <ul className="results-wrapper">
+    <div className="search-results">
+      <ul className="search-results__list">
         {resultData?.results.map((character: Character) => (
           <li
             className="character"
             key={character.id}
             onClick={() => {
-              searchParams.set('id', `${character.id}`)
+              searchParams.set('id', `${character.id}`);
               setSearchParams(searchParams);
-              }}>
-            <h3>{character.name}</h3>
-            <p>gender: {character.gender}</p>
-            <p>species: {character.species}</p>
-            <p>status: {character.status}</p>
+            }}
+          >
+            <img
+              className="character__img"
+              src={character.image}
+              alt={character.name}
+            />
+            <div
+              className={`character__status character__status_${character.status.toLowerCase()}`}
+            >
+              {character.status}
+            </div>
+            <div className="character__info">
+              <h3 className="character__name">{character.name}</h3>
+              <p className="character__species">{character.species}</p>
+              <p className="character__location">
+                <img className="location-icon" src={location} alt="location" />
+                {character.location.name}
+              </p>
+            </div>
           </li>
         ))}
       </ul>
-      <Pagination
-        pageQuantity={resultData?.info.pages}
-      />
+      <Pagination pageQuantity={resultData?.info.pages} />
     </div>
   );
 }
