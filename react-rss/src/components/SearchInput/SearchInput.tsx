@@ -38,10 +38,7 @@ export default function SearchInput({
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
-      <button
-        className="search-bar__button"
-        type="submit"
-      />
+      <button className="search-bar__button" type="submit" />
     </form>
   );
 }
