@@ -9,7 +9,7 @@ export default function AppRouter(): JSX.Element {
       <Route path="/" element={<Home />}>
         <Route path=":id" element={<Details />} />
       </Route>
-      <Route path='/*' element={<Oops/>} />
+      <Route path="/*" element={<Oops />} />
     </Routes>
   );
 }
