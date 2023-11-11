@@ -1,5 +1,9 @@
 import { Component, ReactNode } from 'react';
 
+import error from '../../assets/error.png';
+
+import './errorBoundary.scss';
+
 type Props = {
   children?: ReactNode;
 };
@@ -20,11 +24,16 @@ export default class ErrorBoundary extends Component<Props, State> {
   render() {
     if (this.state.hasError) {
       return (
-        <h1 style={{ textAlign: 'center' }}>
-          Sorry... Something went wrong
-          <br />
-          Please update the page
-        </h1>
+        <div className='error-container'>
+          <img className='error-img' src={error} alt={error} />
+          <h1 style={{ textAlign: 'center' }}>
+            Sorry... Something went wrong
+            <br />
+            Please update the page
+          </h1>
+
+        </div>
+
       );
     }
 

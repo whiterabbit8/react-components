@@ -14,7 +14,7 @@ export default function Search(): JSX.Element {
   const [isLoading, setLoading] = useState(true);
   const [resultData, setResultData] = useState<ResultData>();
   const [success, setSuccess] = useState(false);
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [style, setStyle] = useState('');
 
   useEffect(() => {
@@ -27,6 +27,8 @@ export default function Search(): JSX.Element {
 
   const makeSearch = (page = 1) => {
     setLoading(true);
+    searchParams.set('page', '1');
+    setSearchParams(searchParams);
     getCharacters(localStorage.getItem('query'), page).then((data) => {
       if (!data.error) {
         setResultData(data);
