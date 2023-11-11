@@ -31,14 +31,17 @@ export default function SearchInput({
   };
 
   return (
-    <div className="search-bar">
+    <form className="search-bar" onSubmit={handleClick}>
       <input
         className="search-bar__input"
         placeholder="enter character name"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
-      <button className="search-bar__button" type='submit' onClick={handleClick} />
-    </div>
+      <button
+        className="search-bar__button"
+        type="submit"
+      />
+    </form>
   );
 }

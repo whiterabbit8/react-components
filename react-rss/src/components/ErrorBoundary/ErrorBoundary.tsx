@@ -24,16 +24,14 @@ export default class ErrorBoundary extends Component<Props, State> {
   render() {
     if (this.state.hasError) {
       return (
-        <div className='error-container'>
-          <img className='error-img' src={error} alt={error} />
+        <div className="error-container">
+          <img className="error-img" src={error} alt={error} />
           <h1 style={{ textAlign: 'center' }}>
             Sorry... Something went wrong
             <br />
             Please update the page
           </h1>
-
         </div>
-
       );
     }
 
