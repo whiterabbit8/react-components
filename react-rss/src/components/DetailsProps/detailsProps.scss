@@ -1,0 +1,26 @@
+@import '../../variables.scss';
+
+.props {
+  display: flex;
+  margin-bottom: 5px;
+  gap: 5px;
+  text-align: center;
+
+  &__name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    padding: 2px 5px;
+    border-radius: 3px;
+    background: $blue-color;
+    text-transform: uppercase;
+  }
+
+  &__value {
+    width: 170px;
+    padding: 2px 5px;
+    border-radius: 3px;
+    background: $blue-transparent;
+  }
+}

@@ -1,0 +1,28 @@
+.search-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.logo {
+  width: 100%;
+  height: 100px;
+  margin: 0.25em;
+}
+
+.container {
+  display: grid;
+  grid-template-rows: 88px 72px auto;
+  grid-template-areas:
+    'searchbar'
+    'error-button'
+    'results';
+
+  &_details {
+    grid-template-areas:
+      'searchbar details'
+      'error-button details'
+      'results details';
+  }
+}

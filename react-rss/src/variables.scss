@@ -1,0 +1,31 @@
+$background-color: #043f47;
+$border-color: #bfde42;
+$font-color: #fff;
+$blue-color: #0c7d85;
+$blue-transparent: #407772;
+$font-transpatent: #b3cac9;
+$alive-color: #009d3d;
+$dead-color: #d22e2b;
+$unknown-color: #0089ff;
+$orange-color: #f96e4d;
+$orange-dark: #db5e3f;
+
+%status {
+  padding: 0 5px;
+  border-radius: 3px;
+  font-size: 0.9em;
+  font-weight: 700;
+}
+
+%button {
+  padding: 0.5em 1em;
+  width: fit-content;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1em;
+  font-weight: 700;
+  color: $font-color;
+  border: none;
+  border-radius: 1.25em;
+  background-color: $orange-color;
+  transition: 0.3s;
+}
