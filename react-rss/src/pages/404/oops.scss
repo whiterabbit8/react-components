@@ -1,0 +1,50 @@
+@import '../../variables.scss';
+
+.oops {
+  &-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-header {
+    text-align: center;
+  }
+
+  &-button {
+    @extend %button;
+    margin-top: 2em;
+    text-transform: uppercase;
+    font-size: 1.1em;
+    font-weight: 700;
+
+    &:hover {
+      cursor: pointer;
+      background: $orange-dark;
+    }
+  }
+}
+
+.error {
+  &-img-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 350px;
+    width: 450px;
+    font-size: 250px;
+    font-weight: 700;
+    line-height: 250px;
+  }
+
+  &-img {
+    position: absolute;
+    left: 46px;
+    width: auto;
+    height: 350px;
+  }
+}

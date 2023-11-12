@@ -1,0 +1,52 @@
+@import '../../variables.scss';
+
+.search-bar {
+  position: relative;
+  display: flex;
+  width: 75%;
+  gap: 20px;
+  margin: 0 auto;
+  margin-top: 1em;
+  grid-area: searchbar;
+
+  &__input {
+    box-sizing: border-box;
+    width: 100%;
+    height: 2em;
+    margin-bottom: 1em;
+    padding: 0.1em 1em;
+    border-radius: 1.75em;
+    border: none;
+    outline: none;
+    background-color: $blue-transparent;
+    color: $font-color;
+    caret-color: $font-transpatent;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5em;
+    line-height: 1.5em;
+
+    &::placeholder {
+      color: $font-transpatent;
+    }
+  }
+
+  &__button {
+    position: absolute;
+    top: 0.3em;
+    right: 0.75em;
+    width: 3em;
+    height: 3em;
+    background: url('../../assets/search.svg');
+    background-position: center;
+    background-size: 2em 2em;
+    background-repeat: no-repeat;
+    border: none;
+    opacity: 0.6;
+    transition: 0.3s;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.9;
+    }
+  }
+}
