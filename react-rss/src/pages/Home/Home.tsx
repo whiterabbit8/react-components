@@ -5,6 +5,7 @@ import SearchInput from '../../components/SearchInput/SearchInput';
 import ErrorButton from '../../components/ErrorButton/ErrorButton';
 import { ResultData } from '../../utilities/types';
 import { getCharacters } from '../../utilities/api';
+import { useQueryContext } from '../../utilities/context';
 
 import logo from '../../assets/logo.svg';
 
@@ -16,6 +17,8 @@ export default function Search(): JSX.Element {
   const [success, setSuccess] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [style, setStyle] = useState('');
+
+  const { query } = useQueryContext();
 
   useEffect(() => {
     if (searchParams.get('id')) {
@@ -29,7 +32,7 @@ export default function Search(): JSX.Element {
     setLoading(true);
     searchParams.set('page', '1');
     setSearchParams(searchParams);
-    getCharacters(localStorage.getItem('query'), page).then((data) => {
+    getCharacters(query, page).then((data) => {
       if (!data.error) {
         setResultData(data);
         setSuccess(true);
