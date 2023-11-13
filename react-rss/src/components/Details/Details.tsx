@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import DetailsProps from '../DetailsProps/DetailsProps';
+import DetailsHeader from '../DetailsHeader/DetailsHeader';
+import Loader from '../Loader/Loader';
 import { Character } from '../../utilities/types';
 import { baseUrl } from '../../utilities/api';
 
 import './details.scss';
-import DetailsHeader from '../DetailsHeader/DetailsHeader';
-import Loader from '../App/Loader/Loader';
 
 export default function Details(): JSX.Element {
   const [character, setCharacter] = useState<Character>();

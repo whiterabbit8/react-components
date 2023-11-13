@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
+import { useSearchContext } from '../../utilities/context';
 
 import './SearchInput.scss';
-import { useQueryContext } from '../../utilities/context';
 
 type SearchInputProps = {
   makeSearch: () => void;
@@ -10,41 +10,31 @@ type SearchInputProps = {
 export default function SearchInput({
   makeSearch,
 }: SearchInputProps): JSX.Element {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState(localStorage.getItem('query') || '');
 
-  const { setQuery } = useQueryContext();
-
-  useEffect(() => {
-    const storageValue = localStorage.getItem('query')
-      ? localStorage.getItem('query')
-      : '';
-    if (storageValue) {
-      setValue(storageValue);
-    }
-    setQuery(value);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const { query, setQuery } = useSearchContext();
 
   useEffect(() => {
+    console.log(query);
     makeSearch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleClick = () => {
+  useEffect(() => {
     localStorage.setItem('query', value);
-    setQuery(value);
     makeSearch();
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query]);
 
   return (
-    <form className="search-bar" onSubmit={handleClick}>
+    <div className="search-bar">
       <input
         className="search-bar__input"
         placeholder="enter character name"
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
-      <button className="search-bar__button" type="submit" />
-    </form>
+      <button className="search-bar__button" onClick={() => setQuery(value)} />
+    </div>
   );
 }

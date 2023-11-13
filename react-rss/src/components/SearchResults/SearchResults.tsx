@@ -1,16 +1,16 @@
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import Loader from '../App/Loader/Loader';
+import Loader from '../Loader/Loader';
 import Pagination from '../Pagination/Pagination';
+import NotFound from '../NotFound/NotFound';
 import { Character, ResultData } from '../../utilities/types';
 
 import location from '../../assets/location.svg';
 
 import './searchResults.scss';
-import NotFound from '../NotFound/NotFound';
 
 type SearchResultsProps = {
-  loadPage: (page: number) => void;
+  loadPage: (page: number, search: boolean) => void;
   isLoading: boolean;
   resultData: ResultData | undefined;
   success: boolean;
@@ -22,10 +22,10 @@ export default function SearchResults({
   resultData,
   success,
 }: SearchResultsProps): JSX.Element {
-  const [searchParams, setSearchParams] = useSearchParams({ page: '1' });
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    loadPage(Number(searchParams.get('page')));
+    loadPage(Number(searchParams.get('page')), false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 

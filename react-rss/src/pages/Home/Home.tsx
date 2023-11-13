@@ -3,22 +3,20 @@ import { Outlet, useSearchParams } from 'react-router-dom';
 import SearchResults from '../../components/SearchResults/SearchResults';
 import SearchInput from '../../components/SearchInput/SearchInput';
 import ErrorButton from '../../components/ErrorButton/ErrorButton';
-import { ResultData } from '../../utilities/types';
 import { getCharacters } from '../../utilities/api';
-import { useQueryContext } from '../../utilities/context';
+import { useSearchContext } from '../../utilities/context';
 
 import logo from '../../assets/logo.svg';
 
 import './home.scss';
 
-export default function Search(): JSX.Element {
+export default function Home(): JSX.Element {
   const [isLoading, setLoading] = useState(true);
-  const [resultData, setResultData] = useState<ResultData>();
   const [success, setSuccess] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
   const [style, setStyle] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams({ page: '1' });
 
-  const { query } = useQueryContext();
+  const { query, resultData, setResultData } = useSearchContext();
 
   useEffect(() => {
     if (searchParams.get('id')) {
@@ -28,10 +26,12 @@ export default function Search(): JSX.Element {
     }
   }, [searchParams]);
 
-  const makeSearch = (page = 1) => {
+  const makeSearch = (page = 1, search = true) => {
     setLoading(true);
-    searchParams.set('page', '1');
-    setSearchParams(searchParams);
+    if (search) {
+      searchParams.set('page', '1');
+      setSearchParams(searchParams);
+    }
     getCharacters(query, page).then((data) => {
       if (!data.error) {
         setResultData(data);
