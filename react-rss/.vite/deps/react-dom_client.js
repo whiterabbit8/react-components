@@ -7153,20 +7153,20 @@ var require_react_dom_development = __commonJS({
             return 'deltaX' in event
               ? event.deltaX
               : // Fallback to `wheelDeltaX` for Webkit and normalize (right is positive).
-              'wheelDeltaX' in event
-              ? -event.wheelDeltaX
-              : 0;
+                'wheelDeltaX' in event
+                ? -event.wheelDeltaX
+                : 0;
           },
           deltaY: function (event) {
             return 'deltaY' in event
               ? event.deltaY
               : // Fallback to `wheelDeltaY` for Webkit and normalize (down is positive).
-              'wheelDeltaY' in event
-              ? -event.wheelDeltaY
-              : // Fallback to `wheelDelta` for IE<9 and normalize (down is positive).
-              'wheelDelta' in event
-              ? -event.wheelDelta
-              : 0;
+                'wheelDeltaY' in event
+                ? -event.wheelDeltaY
+                : // Fallback to `wheelDelta` for IE<9 and normalize (down is positive).
+                  'wheelDelta' in event
+                  ? -event.wheelDelta
+                  : 0;
           },
           deltaZ: 0,
           // Browsers without "deltaMode" is reporting in raw wheel delta where one
@@ -8154,8 +8154,8 @@ var require_react_dom_development = __commonJS({
           return eventTarget.window === eventTarget
             ? eventTarget.document
             : eventTarget.nodeType === DOCUMENT_NODE
-            ? eventTarget
-            : eventTarget.ownerDocument;
+              ? eventTarget
+              : eventTarget.ownerDocument;
         }
         function constructSelectEvent(
           dispatchQueue,
@@ -10633,13 +10633,13 @@ var require_react_dom_development = __commonJS({
           typeof queueMicrotask === 'function'
             ? queueMicrotask
             : typeof localPromise !== 'undefined'
-            ? function (callback) {
-                return localPromise
-                  .resolve(null)
-                  .then(callback)
-                  .catch(handleErrorInNextTick);
-              }
-            : scheduleTimeout;
+              ? function (callback) {
+                  return localPromise
+                    .resolve(null)
+                    .then(callback)
+                    .catch(handleErrorInNextTick);
+                }
+              : scheduleTimeout;
         function handleErrorInNextTick(error2) {
           setTimeout(function () {
             throw error2;
@@ -19283,9 +19283,8 @@ var require_react_dom_development = __commonJS({
                   '%s: Function components do not support contextType.',
                   _componentName4
                 );
-                didWarnAboutContextTypeOnFunctionComponent[
-                  _componentName4
-                ] = true;
+                didWarnAboutContextTypeOnFunctionComponent[_componentName4] =
+                  true;
               }
             }
           }
@@ -25304,16 +25303,16 @@ var require_react_dom_development = __commonJS({
           return timeElapsed < 120
             ? 120
             : timeElapsed < 480
-            ? 480
-            : timeElapsed < 1080
-            ? 1080
-            : timeElapsed < 1920
-            ? 1920
-            : timeElapsed < 3e3
-            ? 3e3
-            : timeElapsed < 4320
-            ? 4320
-            : ceil(timeElapsed / 1960) * 1960;
+              ? 480
+              : timeElapsed < 1080
+                ? 1080
+                : timeElapsed < 1920
+                  ? 1920
+                  : timeElapsed < 3e3
+                    ? 3e3
+                    : timeElapsed < 4320
+                      ? 4320
+                      : ceil(timeElapsed / 1960) * 1960;
         }
         function checkForNestedUpdates() {
           if (nestedUpdateCount > NESTED_UPDATE_LIMIT) {

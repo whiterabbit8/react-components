@@ -650,8 +650,8 @@ function computeScore(path, index) {
         (paramRe.test(segment)
           ? dynamicSegmentValue
           : segment === ''
-          ? emptySegmentValue
-          : staticSegmentValue),
+            ? emptySegmentValue
+            : staticSegmentValue),
       initialScore
     );
 }
@@ -994,8 +994,8 @@ var normalizeSearch = (search) =>
   !search || search === '?'
     ? ''
     : search.startsWith('?')
-    ? search
-    : '?' + search;
+      ? search
+      : '?' + search;
 var normalizeHash = (hash) =>
   !hash || hash === '#' ? '' : hash.startsWith('#') ? hash : '#' + hash;
 var json = function json2(data, init) {
@@ -1267,8 +1267,8 @@ function createRouter(init) {
   const routerWindow = init.window
     ? init.window
     : typeof window !== 'undefined'
-    ? window
-    : void 0;
+      ? window
+      : void 0;
   const isBrowser2 =
     typeof routerWindow !== 'undefined' &&
     typeof routerWindow.document !== 'undefined' &&
@@ -2870,13 +2870,13 @@ function normalizeNavigateOptions(normalizeFormMethod, isFetcher, path, opts) {
         typeof opts.body === 'string'
           ? opts.body
           : opts.body instanceof FormData ||
-            opts.body instanceof URLSearchParams
-          ? // https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#plain-text-form-data
-            Array.from(opts.body.entries()).reduce((acc, _ref3) => {
-              let [name, value] = _ref3;
-              return '' + acc + name + '=' + value + '\n';
-            }, '')
-          : String(opts.body);
+              opts.body instanceof URLSearchParams
+            ? // https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#plain-text-form-data
+              Array.from(opts.body.entries()).reduce((acc, _ref3) => {
+                let [name, value] = _ref3;
+                return '' + acc + name + '=' + value + '\n';
+              }, '')
+            : String(opts.body);
       return {
         path,
         submission: {
@@ -2991,8 +2991,8 @@ function getMatchesToLoad(
   let actionResult = pendingError
     ? Object.values(pendingError)[0]
     : pendingActionData
-    ? Object.values(pendingActionData)[0]
-    : void 0;
+      ? Object.values(pendingActionData)[0]
+      : void 0;
   let currentUrl = history.createURL(state.location);
   let nextUrl = history.createURL(location);
   let boundaryId = pendingError ? Object.keys(pendingError)[0] : void 0;
@@ -4296,8 +4296,8 @@ function DefaultErrorComponent() {
   let message = isRouteErrorResponse(error)
     ? error.status + ' ' + error.statusText
     : error instanceof Error
-    ? error.message
-    : JSON.stringify(error);
+      ? error.message
+      : JSON.stringify(error);
   let stack = error instanceof Error ? error.stack : null;
   let lightgrey = 'rgba(200,200,200, 0.5)';
   let preStyles = {
@@ -4986,8 +4986,8 @@ var AwaitErrorBoundary = class extends React.Component {
         promise._error !== void 0
           ? AwaitRenderStatus.error
           : promise._data !== void 0
-          ? AwaitRenderStatus.success
-          : AwaitRenderStatus.pending;
+            ? AwaitRenderStatus.success
+            : AwaitRenderStatus.pending;
     } else {
       status = AwaitRenderStatus.pending;
       Object.defineProperty(resolve, '_tracked', {

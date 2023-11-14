@@ -2,14 +2,16 @@
   "root": true,
   "env": {
     "browser": true,
-    "es2020": true
+    "es2020": true,
+    "jest/globals": true
   },
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react-hooks/recommended",
-    "prettier"
+    "prettier",
+    "plugin:jest/recommended"
   ],
   "ignorePatterns": ["dist", ".eslintrc.cjs"],
   "parser": "@typescript-eslint/parser",
@@ -18,7 +20,13 @@
       "jsx": true
     }
   },
-  "plugins": ["react-refresh", "react-hooks", "react", "@typescript-eslint"],
+  "plugins": [
+    "react-refresh",
+    "react-hooks",
+    "react",
+    "@typescript-eslint",
+    "jest"
+  ],
   "settings": {
     "react": {
       "version": "detect"

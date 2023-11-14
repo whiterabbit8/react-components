@@ -1,9 +1,4 @@
-import {
-  ReactNode,
-  createContext,
-  useContext,
-  useState,
-} from 'react';
+import { ReactNode, createContext, useContext, useState } from 'react';
 import { ResultData } from './types';
 
 type SearchContent = {
