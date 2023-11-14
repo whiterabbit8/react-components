@@ -1,8 +1,8 @@
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { BrowserRouter } from 'react-router-dom';
-import { SearchContext } from '../../utilities/context';
+import { MemoryRouter } from 'react-router-dom';
 import SearchResults from './SearchResults';
+import { SearchContext } from '../../utilities/context';
 import {
   mockResultData,
   mockEmptyResultData,
@@ -11,7 +11,7 @@ import {
 describe('Test SearcResults component', () => {
   test('Component renders the specified number of cards', () => {
     const { container } = render(
-      <BrowserRouter>
+      <MemoryRouter>
         <SearchContext.Provider
           value={{
             query: '',
@@ -23,11 +23,10 @@ describe('Test SearcResults component', () => {
           <SearchResults
             loadPage={jest.fn()}
             isLoading={false}
-            resultData={mockResultData}
             success={true}
           />
         </SearchContext.Provider>
-      </BrowserRouter>
+      </MemoryRouter>
     );
 
     const cards = container.getElementsByClassName('character');
@@ -36,7 +35,7 @@ describe('Test SearcResults component', () => {
 
   test('Appropriate message is displayed if no cards are present', () => {
     const { container } = render(
-      <BrowserRouter>
+      <MemoryRouter>
         <SearchContext.Provider
           value={{
             query: '',
@@ -48,11 +47,10 @@ describe('Test SearcResults component', () => {
           <SearchResults
             loadPage={jest.fn()}
             isLoading={false}
-            resultData={mockEmptyResultData}
             success={false}
           />
         </SearchContext.Provider>
-      </BrowserRouter>
+      </MemoryRouter>
     );
 
     const message = container.querySelector('.not-found-container');

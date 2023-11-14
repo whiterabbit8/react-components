@@ -16,7 +16,7 @@ export default function Home(): JSX.Element {
   const [style, setStyle] = useState('');
   const [searchParams, setSearchParams] = useSearchParams({ page: '1' });
 
-  const { query, resultData, setResultData } = useSearchContext();
+  const { query, setResultData } = useSearchContext();
 
   useEffect(() => {
     if (searchParams.get('id')) {
@@ -52,7 +52,6 @@ export default function Home(): JSX.Element {
         <SearchResults
           loadPage={makeSearch}
           isLoading={isLoading}
-          resultData={resultData}
           success={success}
         />
         {searchParams.get('id') && <Outlet />}

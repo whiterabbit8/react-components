@@ -15,7 +15,6 @@ export default function SearchInput({
   const { query, setQuery } = useSearchContext();
 
   useEffect(() => {
-    console.log(query);
     makeSearch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
