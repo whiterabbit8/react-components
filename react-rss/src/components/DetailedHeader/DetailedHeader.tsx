@@ -1,4 +1,4 @@
-import './detailsHeader.scss';
+import './detailedHeader.scss';
 
 type DetailsHeaderProps = {
   name: string;

@@ -1,4 +1,4 @@
-import './detailsProps.scss';
+import './detailedProps.scss';
 
 type detailsPropsProps = {
   name: string;

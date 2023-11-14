@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import DetailsProps from '../DetailsProps/DetailsProps';
-import DetailsHeader from '../DetailsHeader/DetailsHeader';
+import DetailsProps from '../DetailedProps/DetailedProps';
+import DetailsHeader from '../DetailedHeader/DetailedHeader';
 import Loader from '../Loader/Loader';
 import { Character } from '../../utilities/types';
 import { baseUrl } from '../../utilities/api';
 
-import './details.scss';
+import './detailedCard.scss';
 
 export default function Details(): JSX.Element {
   const [character, setCharacter] = useState<Character>();

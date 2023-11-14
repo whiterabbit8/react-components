@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router';
 import Home from '../../pages/Home/Home';
-import Details from '../Details/Details';
+import Details from '../DetailedCard/DetailedCard';
 import Oops from '../../pages/404/Oops';
 
 export default function AppRouter(): JSX.Element {
