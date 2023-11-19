@@ -8,11 +8,15 @@ import './detailedCard.scss';
 
 export default function DetailedCard(): JSX.Element {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { data, isLoading } = useGetCharacterByIdQuery(`${searchParams.get('id')}`);
+  const { data, isLoading } = useGetCharacterByIdQuery(
+    `${searchParams.get('id')}`
+  );
 
   return (
     <div className="details">
-      {isLoading ? <Loader /> : (
+      {isLoading ? (
+        <Loader />
+      ) : (
         <>
           <img
             className={`details__img details__img_${data?.status.toLowerCase()}`}
