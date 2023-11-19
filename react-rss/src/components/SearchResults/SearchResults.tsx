@@ -25,7 +25,7 @@ export default function SearchResults(): JSX.Element {
 
   useEffect(() => {
     dispatch(
-      getCharacters({ name: query, page: Number(searchParams.get('page')) })
+      getCharacters({ name: query, page: searchParams.get('page') })
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query, searchParams]);

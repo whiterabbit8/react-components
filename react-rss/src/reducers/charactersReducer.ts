@@ -5,10 +5,10 @@ export const getCharacters = createAsyncThunk(
   'get/characters',
   async ({
     name,
-    page = 1,
+    page = '1',
   }: {
     name: string;
-    page: number | undefined;
+    page: string | null;
   }): Promise<ResultData> => {
     const searchUrl = name ? `name=${name.trim().replace(' ', '+')}` : '';
     const response = await fetch(
@@ -24,13 +24,11 @@ export const getCharacters = createAsyncThunk(
 interface CharactersState {
   loading: boolean;
   data: ResultData | undefined;
-  error: string | undefined;
 }
 
 const initialState: CharactersState = {
   loading: false,
   data: undefined,
-  error: undefined,
 };
 
 export const charactersSlise = createSlice({

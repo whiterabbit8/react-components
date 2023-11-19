@@ -1,35 +1,33 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import DetailsProps from '../DetailedProps/DetailedProps';
 import DetailsHeader from '../DetailedHeader/DetailedHeader';
 import Loader from '../Loader/Loader';
-import { Character } from '../../utilities/types';
-import { baseUrl } from '../../utilities/api';
+import { useAppSelector, useAppDispatch } from '../../app/store';
+import { getCharacterById } from '../../reducers/characterByIdReducer';
 
 import './detailedCard.scss';
 
 export default function DetailedCard(): JSX.Element {
-  const [character, setCharacter] = useState<Character>();
-  const [isLoading, setLoading] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams();
+  const { character, loading } = useAppSelector((state) => state.characterById);
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
-    const getCharacter = async () => {
-      const id = searchParams.get('id');
-      const response = await fetch(`${baseUrl}${id}`, { method: 'GET' });
-      const data = await response.json();
-      setCharacter(data);
-    };
-    if (searchParams.get('id')) {
-      setLoading(true);
-      getCharacter().then(() => setLoading(false));
-    }
+    dispatch(getCharacterById(searchParams.get('id')))
   }, [searchParams]);
+
+  if (loading) {
+    return (
+      <div className='details'>
+        <Loader />
+      </div>
+    )
+  }
 
   return (
     <div className="details">
-      {isLoading && <Loader />}
-      {!isLoading && searchParams.get('id') && (
+      {searchParams.get('id') && (
         <>
           <img
             className={`details__img details__img_${character?.status.toLowerCase()}`}
