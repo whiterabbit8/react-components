@@ -1,35 +1,19 @@
-import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../app/store';
+import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { setQuery } from '../../reducers/queryReducer';
 
 import './SearchInput.scss';
 
-type SearchInputProps = {
-  makeSearch: () => void;
-};
-
-export default function SearchInput({
-  makeSearch,
-}: SearchInputProps): JSX.Element {
+export default function SearchInput(): JSX.Element {
   const [value, setValue] = useState(localStorage.getItem('query') || '');
-
-  //const { query, setQuery } = useSearchContext();
-  const query = useSelector((state: RootState) => state.query.value);
+  const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    makeSearch();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
+  const handleClick = (newQuery: string) => {
     localStorage.setItem('query', value);
-    makeSearch();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query]);
-
-  const handleChange = (newQuery: string) => {
+    searchParams.set('page', '1');
+    setSearchParams(searchParams);
     dispatch(setQuery(newQuery));
   };
 
@@ -43,7 +27,9 @@ export default function SearchInput({
       />
       <button
         className="search-bar__button"
-        onClick={() => handleChange(value)}
+        onClick={() => {
+          handleClick(value);
+        }}
       />
     </div>
   );

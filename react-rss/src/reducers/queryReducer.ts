@@ -13,10 +13,7 @@ export const querySlice = createSlice({
   initialState,
   reducers: {
     setQuery: (state, action: PayloadAction<string>) => {
-      return {
-        ...state,
-        value: action.payload,
-      };
+      state.value = action.payload;
     },
   },
 });

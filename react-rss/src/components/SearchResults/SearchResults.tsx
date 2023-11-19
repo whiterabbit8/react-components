@@ -1,50 +1,51 @@
 import { useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Card from '../Card/Card';
 import Loader from '../Loader/Loader';
 import Pagination from '../Pagination/Pagination';
 import NotFound from '../NotFound/NotFound';
 import { Character } from '../../utilities/types';
+import { RootState, useAppDispatch, useAppSelector } from '../../app/store';
+import { getCharacters } from '../../reducers/charactersReducer';
 
 import './searchResults.scss';
-import { useSearchContext } from '../../utilities/context';
 
-type SearchResultsProps = {
-  loadPage: (page: number, search: boolean) => void;
-  isLoading: boolean;
-  success: boolean;
-};
-
-export default function SearchResults({
-  loadPage,
-  isLoading,
-  success,
-}: SearchResultsProps): JSX.Element {
-  const [searchParams] = useSearchParams();
-
-  const { resultData } = useSearchContext();
+export default function SearchResults(): JSX.Element {
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams({ page: '1' });
+  const query = useSelector((state: RootState) => state.query.value);
+  const { data, loading } = useAppSelector((state) => state.characters);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    loadPage(Number(searchParams.get('page')), false);
+    navigate(`../react-rss/?page=${searchParams.get('page')}`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchParams]);
+  }, []);
 
-  if (isLoading) {
+  useEffect(() => {
+    dispatch(
+      getCharacters({ name: query, page: Number(searchParams.get('page')) })
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query, searchParams]);
+
+  if (loading) {
     return <Loader />;
   }
 
-  if (!success) {
+  if (data?.error) {
     return <NotFound />;
   }
 
   return (
     <div className="search-results">
       <ul className="search-results__list">
-        {resultData?.results.map((character: Character) => (
+        {data?.results.map((character: Character) => (
           <Card key={character.id} character={character} />
         ))}
       </ul>
-      <Pagination pageQuantity={resultData?.info.pages} />
+      <Pagination pageQuantity={data?.info.pages} />
     </div>
   );
 }

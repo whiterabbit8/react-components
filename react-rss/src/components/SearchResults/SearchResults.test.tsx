@@ -20,11 +20,7 @@ describe('Test SearcResults component', () => {
             setResultData: jest.fn(),
           }}
         >
-          <SearchResults
-            loadPage={jest.fn()}
-            isLoading={false}
-            success={true}
-          />
+          <SearchResults />
         </SearchContext.Provider>
       </MemoryRouter>
     );
@@ -44,11 +40,7 @@ describe('Test SearcResults component', () => {
             setResultData: jest.fn(),
           }}
         >
-          <SearchResults
-            loadPage={jest.fn()}
-            isLoading={false}
-            success={false}
-          />
+          <SearchResults />
         </SearchContext.Provider>
       </MemoryRouter>
     );
