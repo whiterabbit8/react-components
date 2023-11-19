@@ -67,6 +67,8 @@ describe('Test Card component', () => {
     })
   })*/
 
+  //This test need to be fix
+  // eslint-disable-next-line
   /*test('Clicking triggers an additional API call to fetch detailed information', async () => {
     const { container } = render(
       <BrowserRouter>

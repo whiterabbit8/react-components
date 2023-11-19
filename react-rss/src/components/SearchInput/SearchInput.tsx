@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useSearchContext } from '../../utilities/context';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../app/store';
+import { setQuery } from '../../reducers/queryReducer';
 
 import './SearchInput.scss';
 
@@ -12,7 +14,9 @@ export default function SearchInput({
 }: SearchInputProps): JSX.Element {
   const [value, setValue] = useState(localStorage.getItem('query') || '');
 
-  const { query, setQuery } = useSearchContext();
+  //const { query, setQuery } = useSearchContext();
+  const query = useSelector((state: RootState) => state.query.value);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     makeSearch();
@@ -25,6 +29,10 @@ export default function SearchInput({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
 
+  const handleChange = (newQuery: string) => {
+    dispatch(setQuery(newQuery));
+  };
+
   return (
     <div className="search-bar">
       <input
@@ -33,7 +41,10 @@ export default function SearchInput({
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
-      <button className="search-bar__button" onClick={() => setQuery(value)} />
+      <button
+        className="search-bar__button"
+        onClick={() => handleChange(value)}
+      />
     </div>
   );
 }

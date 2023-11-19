@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Outlet, useSearchParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../app/store';
 import SearchResults from '../../components/SearchResults/SearchResults';
 import SearchInput from '../../components/SearchInput/SearchInput';
 import ErrorButton from '../../components/ErrorButton/ErrorButton';
@@ -16,7 +18,9 @@ export default function Home(): JSX.Element {
   const [style, setStyle] = useState('');
   const [searchParams, setSearchParams] = useSearchParams({ page: '1' });
 
-  const { query, setResultData } = useSearchContext();
+  const { setResultData } = useSearchContext();
+
+  const query = useSelector((state: RootState) => state.query.value);
 
   useEffect(() => {
     if (searchParams.get('id')) {

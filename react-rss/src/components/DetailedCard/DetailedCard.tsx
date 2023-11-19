@@ -8,9 +8,9 @@ import { baseUrl } from '../../utilities/api';
 
 import './detailedCard.scss';
 
-export default function Details(): JSX.Element {
+export default function DetailedCard(): JSX.Element {
   const [character, setCharacter] = useState<Character>();
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
