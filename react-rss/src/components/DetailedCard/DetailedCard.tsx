@@ -1,52 +1,36 @@
-import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import DetailsProps from '../DetailedProps/DetailedProps';
 import DetailsHeader from '../DetailedHeader/DetailedHeader';
 import Loader from '../Loader/Loader';
-import { useAppSelector, useAppDispatch } from '../../app/store';
-import { getCharacterById } from '../../reducers/characterByIdReducer';
+import { useGetCharacterByIdQuery } from '../../store/apiSlice/charactersApi';
 
 import './detailedCard.scss';
 
 export default function DetailedCard(): JSX.Element {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { character, loading } = useAppSelector((state) => state.characterById);
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(getCharacterById(searchParams.get('id')));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchParams]);
-
-  if (loading) {
-    return (
-      <div className="details">
-        <Loader />
-      </div>
-    );
-  }
+  const { data, isLoading } = useGetCharacterByIdQuery(`${searchParams.get('id')}`);
 
   return (
     <div className="details">
-      {searchParams.get('id') && (
+      {isLoading ? <Loader /> : (
         <>
           <img
-            className={`details__img details__img_${character?.status.toLowerCase()}`}
-            src={character?.image}
-            alt={character?.name}
+            className={`details__img details__img_${data?.status.toLowerCase()}`}
+            src={data?.image}
+            alt={data?.name}
           />
           <div
-            className={`details__status details__status_${character?.status.toLowerCase()}`}
+            className={`details__status details__status_${data?.status.toLowerCase()}`}
           >
-            {character?.status}
+            {data?.status}
           </div>
-          <h2 className="details__name">{character?.name}</h2>
+          <h2 className="details__name">{data?.name}</h2>
           <DetailsHeader name="properties" />
-          <DetailsProps name="species" value={character?.species} />
-          <DetailsProps name="gender" value={character?.gender} />
+          <DetailsProps name="species" value={data?.species} />
+          <DetailsProps name="gender" value={data?.gender} />
           <DetailsHeader name="whereabouts" />
-          <DetailsProps name="origin" value={character?.origin.name} />
-          <DetailsProps name="location" value={character?.location.name} />
+          <DetailsProps name="origin" value={data?.origin.name} />
+          <DetailsProps name="location" value={data?.location.name} />
           <button
             className="details-btn"
             onClick={() =>

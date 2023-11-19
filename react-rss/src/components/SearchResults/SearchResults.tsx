@@ -6,8 +6,8 @@ import Loader from '../Loader/Loader';
 import Pagination from '../Pagination/Pagination';
 import NotFound from '../NotFound/NotFound';
 import { Character } from '../../utilities/types';
-import { RootState, useAppDispatch, useAppSelector } from '../../app/store';
-import { getCharacters } from '../../reducers/charactersReducer';
+import { RootState } from '../../store/store';
+import { useGetCharactersQuery } from '../../store/apiSlice/charactersApi';
 
 import './searchResults.scss';
 
@@ -15,24 +15,18 @@ export default function SearchResults(): JSX.Element {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams({ page: '1' });
   const query = useSelector((state: RootState) => state.query.value);
-  const { data, loading } = useAppSelector((state) => state.characters);
-  const dispatch = useAppDispatch();
+  const { data, isLoading, isError } = useGetCharactersQuery({ name: query, page: searchParams.get('page') })
 
   useEffect(() => {
     navigate(`../react-rss/?page=${searchParams.get('page')}`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    dispatch(getCharacters({ name: query, page: searchParams.get('page') }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query, searchParams]);
-
-  if (loading) {
+  if (isLoading) {
     return <Loader />;
   }
 
-  if (data?.error) {
+  if (isError) {
     return <NotFound />;
   }
 
