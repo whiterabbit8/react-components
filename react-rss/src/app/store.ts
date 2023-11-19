@@ -8,7 +8,7 @@ export const store = configureStore({
   reducer: {
     query: queryReducer,
     characters: charactersReducer,
-    characterById: characterByIdReducer
+    characterById: characterByIdReducer,
   },
 });
 

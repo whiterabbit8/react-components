@@ -11,18 +11,19 @@ import './detailedCard.scss';
 export default function DetailedCard(): JSX.Element {
   const [searchParams, setSearchParams] = useSearchParams();
   const { character, loading } = useAppSelector((state) => state.characterById);
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getCharacterById(searchParams.get('id')))
+    dispatch(getCharacterById(searchParams.get('id')));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
   if (loading) {
     return (
-      <div className='details'>
+      <div className="details">
         <Loader />
       </div>
-    )
+    );
   }
 
   return (
