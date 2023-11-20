@@ -16,9 +16,7 @@ export default function Oops(): JSX.Element {
       <h2 className="oops-header">
         The page you are trying to search has been
       </h2>
-      <h2 className="oops-header">
-        moved to another universe.
-      </h2>
+      <h2 className="oops-header">moved to another universe.</h2>
       <button className="oops-button" onClick={() => navigate('/react-rss/')}>
         Get me home
       </button>

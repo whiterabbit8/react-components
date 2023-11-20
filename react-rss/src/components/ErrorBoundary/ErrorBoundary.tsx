@@ -30,9 +30,7 @@ export default class ErrorBoundary extends Component<Props, State> {
             <h1 style={{ textAlign: 'center' }}>
               Sorry... Something went wrong
             </h1>
-            <h1 style={{ textAlign: 'center' }}>
-              Please update the page
-            </h1>
+            <h1 style={{ textAlign: 'center' }}>Please update the page</h1>
           </div>
         </div>
       );

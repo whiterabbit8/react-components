@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { Character, ResultData } from '../../utilities/types';
+import { baseUrl } from '../../utilities/api';
 
 type getCharactersProps = {
   name: string | undefined;
@@ -9,7 +10,7 @@ type getCharactersProps = {
 export const apiSlice = createApi({
   reducerPath: 'charactersApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://rickandmortyapi.com/api/character',
+    baseUrl: `${baseUrl}`,
   }),
   endpoints: (builder) => ({
     getCharacters: builder.query<ResultData, getCharactersProps>({
