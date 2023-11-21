@@ -11,7 +11,7 @@ describe('Tests Pagination component', () => {
       <MemoryRouter>
         <Pagination pageQuantity={PAGE_QUANTITY} />
       </MemoryRouter>
-    )
+    );
 
     const searchParams = new URLSearchParams(window.location.search);
     const page = searchParams.get('page');
@@ -21,7 +21,7 @@ describe('Tests Pagination component', () => {
 
     waitFor(() => {
       const nextPage = searchParams.get('page');
-      expect(Number(nextPage)).toBe(Number(page) + 1)
-    })
-  })
-})
+      expect(Number(nextPage)).toBe(Number(page) + 1);
+    });
+  });
+});

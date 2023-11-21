@@ -22,6 +22,7 @@ export default function SearchInput(): JSX.Element {
       <input
         className="search-bar__input"
         placeholder="enter character name"
+        type='search'
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
