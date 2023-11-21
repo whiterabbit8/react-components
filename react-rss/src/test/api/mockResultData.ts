@@ -76,3 +76,21 @@ export const mockEmptyResultData = {
     },
   ],
 };
+
+export const mockCharacter = {
+  id: 265,
+  name: "Pickle Rick",
+  status: "Alive",
+  species: "unknown",
+  type: "Pickle",
+  gender: "Male",
+  origin: {
+    name: "Earth (C-137)",
+    url: "https://rickandmortyapi.com/api/location/1"
+  },
+  location: {
+    name: "Earth (Replacement Dimension)",
+    url: "https://rickandmortyapi.com/api/location/20"
+  },
+  image: "https://rickandmortyapi.com/api/character/avatar/265.jpeg",
+}

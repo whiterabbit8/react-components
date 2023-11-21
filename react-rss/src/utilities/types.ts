@@ -3,6 +3,7 @@ export interface Character {
   name: string;
   gender: string;
   species: string;
+  type?: string;
   status: string;
   image: string;
   location: {

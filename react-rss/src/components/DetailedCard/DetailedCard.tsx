@@ -32,6 +32,7 @@ export default function DetailedCard(): JSX.Element {
           <DetailsHeader name="properties" />
           <DetailsProps name="species" value={data?.species} />
           <DetailsProps name="gender" value={data?.gender} />
+          {data?.type && <DetailsProps name="type" value={data?.type} />}
           <DetailsHeader name="whereabouts" />
           <DetailsProps name="origin" value={data?.origin.name} />
           <DetailsProps name="location" value={data?.location.name} />
