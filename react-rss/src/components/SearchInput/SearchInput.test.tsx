@@ -13,17 +13,19 @@ describe('Tests Search component', () => {
           <SearchInput />
         </Provider>
       </MemoryRouter>
-    )
+    );
 
     const input = screen.getByRole('searchbox');
-    const searchBtn = container.querySelector('.search-bar__button') as HTMLElement;
+    const searchBtn = container.querySelector(
+      '.search-bar__button'
+    ) as HTMLElement;
     const testValue = 'test';
 
     fireEvent.change(input, { target: { value: testValue } });
     fireEvent.click(searchBtn);
 
-    expect(localStorage.getItem('query')).toBe(testValue)
-  })
+    expect(localStorage.getItem('query')).toBe(testValue);
+  });
 
   test('Component retrieves the value from the local storage upon mounting', () => {
     const testValue = 'testValue';
@@ -35,10 +37,10 @@ describe('Tests Search component', () => {
           <SearchInput />
         </Provider>
       </MemoryRouter>
-    )
+    );
 
     const input = screen.getByRole('searchbox') as HTMLInputElement;
 
-    expect(input.value).toBe(testValue)
-  })
-})
+    expect(input.value).toBe(testValue);
+  });
+});
