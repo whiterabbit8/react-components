@@ -10,6 +10,15 @@ import { server } from '../../test/api/server';
 import { baseUrl } from '../../utilities/api';
 
 const character = mockResultData.results[0];
+const App = () => {
+  return (
+    <MemoryRouter>
+      <Provider store={store}>
+        <AppRouter />
+      </Provider>
+    </MemoryRouter>
+  );
+};
 
 describe('Test Card component', () => {
   test('Card component renders the relevant card data', () => {
@@ -37,13 +46,7 @@ describe('Test Card component', () => {
   });
 
   test('Clicking on a card opens a detailed card component', () => {
-    render(
-      <MemoryRouter>
-        <Provider store={store}>
-          <AppRouter />
-        </Provider>
-      </MemoryRouter>
-    );
+    render(<App />);
 
     waitFor(() => {
       const card = screen.getByText(character.name);
@@ -57,13 +60,7 @@ describe('Test Card component', () => {
   });
 
   test('Clicking triggers an additional API call to fetch detailed information', async () => {
-    render(
-      <MemoryRouter>
-        <Provider store={store}>
-          <AppRouter />
-        </Provider>
-      </MemoryRouter>
-    );
+    render(<App />);
 
     const mockRequest = jest.fn();
     server.events.on('request:start', ({ request }) => {

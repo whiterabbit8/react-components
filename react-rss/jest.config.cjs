@@ -12,7 +12,7 @@ module.exports = {
       '<rootDir>/mocks/fileMock.ts',
     '\\.(css|scss)$': '<rootDir>/mocks/styleMock.ts',
   },
-  //collectCoverage: true,
+  collectCoverage: true,
   collectCoverageFrom: ['src/**/*.{ts,tsx}'],
   verbose: true,
   testMatch: ['<rootDir>/src/**/*.test.ts', '<rootDir>/src/**/*.test.tsx'],

@@ -5,15 +5,19 @@ import { Provider } from 'react-redux';
 import { store } from '../../store/store';
 import SearchInput from './SearchInput';
 
+const Input = () => {
+  return (
+    <MemoryRouter>
+      <Provider store={store}>
+        <SearchInput />
+      </Provider>
+    </MemoryRouter>
+  );
+};
+
 describe('Tests Search component', () => {
   test('Clicking the Search button saves the entered value to the local storage', () => {
-    const { container } = render(
-      <MemoryRouter>
-        <Provider store={store}>
-          <SearchInput />
-        </Provider>
-      </MemoryRouter>
-    );
+    const { container } = render(<Input />);
 
     const input = screen.getByRole('searchbox');
     const searchBtn = container.querySelector(
@@ -31,13 +35,7 @@ describe('Tests Search component', () => {
     const testValue = 'testValue';
     localStorage.setItem('query', testValue);
 
-    render(
-      <MemoryRouter>
-        <Provider store={store}>
-          <SearchInput />
-        </Provider>
-      </MemoryRouter>
-    );
+    render(<Input />);
 
     const input = screen.getByRole('searchbox') as HTMLInputElement;
 

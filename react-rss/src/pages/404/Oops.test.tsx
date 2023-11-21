@@ -12,14 +12,14 @@ describe('Tests 404 Page component', () => {
       <MemoryRouter initialEntries={['/invalid_route']}>
         <Provider store={store}>
           <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='*' element={<Oops />} />
+            <Route path="/" element={<Home />} />
+            <Route path="*" element={<Oops />} />
           </Routes>
         </Provider>
       </MemoryRouter>
-    )
+    );
 
     expect(screen.getAllByAltText('404 error')).toBeDefined();
     expect(screen.getByText(/get me home/i)).toBeInTheDocument();
-  })
-})
+  });
+});

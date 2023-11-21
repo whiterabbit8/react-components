@@ -6,6 +6,16 @@ import { store } from '../../store/store';
 import AppRouter from '../AppRouter/AppRouter';
 import { mockCharacter, mockResultData } from '../../test/api/mockResultData';
 
+const DetailedPage = () => {
+  return (
+    <MemoryRouter initialEntries={['/?page=1&id=265']}>
+      <Provider store={store}>
+        <AppRouter />
+      </Provider>
+    </MemoryRouter>
+  );
+};
+
 describe('Test Detailed Card component', () => {
   test('A loading indicator is displayed while fetching data', () => {
     render(
@@ -28,13 +38,7 @@ describe('Test Detailed Card component', () => {
   });
 
   test('Detailed card component correctly displays the detailed card data', () => {
-    const { container } = render(
-      <MemoryRouter initialEntries={['/?page=1&id=265']}>
-        <Provider store={store}>
-          <AppRouter />
-        </Provider>
-      </MemoryRouter>
-    );
+    const { container } = render(<DetailedPage />);
 
     const displayedInfo = [
       mockCharacter.name,
@@ -43,6 +47,8 @@ describe('Test Detailed Card component', () => {
       mockCharacter.gender,
       mockCharacter.origin.name,
       mockCharacter.location.name,
+      /properties/i,
+      /whereabouts/i,
     ];
 
     waitFor(() => {
@@ -56,13 +62,7 @@ describe('Test Detailed Card component', () => {
   });
 
   test('Clicking the close button hides the component', () => {
-    const { container } = render(
-      <MemoryRouter initialEntries={['/?page=1&id=265']}>
-        <Provider store={store}>
-          <AppRouter />
-        </Provider>
-      </MemoryRouter>
-    );
+    const { container } = render(<DetailedPage />);
 
     waitFor(() => {
       const closeBtn = screen.getByText(/close/i);
