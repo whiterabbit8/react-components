@@ -42,18 +42,18 @@ describe('Test Detailed Card component', () => {
       mockCharacter.species,
       mockCharacter.gender,
       mockCharacter.origin.name,
-      mockCharacter.location.name
-    ]
+      mockCharacter.location.name,
+    ];
 
     waitFor(() => {
-      const details = container.querySelector('.details')
+      const details = container.querySelector('.details');
       expect(details).toBeInTheDocument();
-      expect(screen.getByAltText(mockCharacter.name)).toBeInTheDocument()
+      expect(screen.getByAltText(mockCharacter.name)).toBeInTheDocument();
       displayedInfo.forEach((item) => {
-        expect(screen.getByText(item)).toBeInTheDocument()
-      })
-    })
-  })
+        expect(screen.getByText(item)).toBeInTheDocument();
+      });
+    });
+  });
 
   test('Clicking the close button hides the component', () => {
     const { container } = render(
@@ -67,12 +67,12 @@ describe('Test Detailed Card component', () => {
     waitFor(() => {
       const closeBtn = screen.getByText(/close/i);
       expect(closeBtn).toBeDefined();
-      fireEvent.click(closeBtn)
+      fireEvent.click(closeBtn);
     });
 
     waitFor(() => {
       const details = container.querySelector('.details');
-      expect(details).not.toBeInTheDocument()
-    })
-  })
+      expect(details).not.toBeInTheDocument();
+    });
+  });
 });
