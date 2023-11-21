@@ -14,7 +14,7 @@
     "prepare": "cd.. && husky install react-rss/.husky",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
-    "test": "jest",
+    "test": "jest --runInBand",
     "test:coverage": "jest --coverage"
   },
   "dependencies": {

@@ -1,5 +1,6 @@
 module.exports = {
   setupFiles: ['./jest.polyfills.js'],
+  setupFilesAfterEnv: ['<rootDir>/src/test/setupTests.ts'],
   preset: 'ts-jest/presets/js-with-ts',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   testEnvironment: 'jest-environment-jsdom',

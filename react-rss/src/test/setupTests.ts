@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import { server } from './api/server';
 
-beforeAll(() => server.listen())
+beforeAll(() => server.listen());
 
 afterEach(() => server.resetHandlers());
 
