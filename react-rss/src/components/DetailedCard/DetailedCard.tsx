@@ -2,7 +2,7 @@ import { useSearchParams } from 'react-router-dom';
 import DetailsProps from '../DetailedProps/DetailedProps';
 import DetailsHeader from '../DetailedHeader/DetailedHeader';
 import Loader from '../Loader/Loader';
-import { useGetCharacterByIdQuery } from '../../store/apiSlice/charactersApi';
+import { useGetCharacterByIdQuery } from '../../store/apiSlice/apiSlice';
 
 import './detailedCard.scss';
 

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setQuery } from '../../store/slice/queryReducer';
+import { setQuery } from '../../store/slice/querySlice';
 
 import './SearchInput.scss';
 

@@ -7,7 +7,7 @@ import Pagination from '../Pagination/Pagination';
 import NotFound from '../NotFound/NotFound';
 import { Character } from '../../utilities/types';
 import { RootState } from '../../store/store';
-import { useGetCharactersQuery } from '../../store/apiSlice/charactersApi';
+import { useGetCharactersQuery } from '../../store/apiSlice/apiSlice';
 
 import './searchResults.scss';
 

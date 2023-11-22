@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux';
-import queryReducer from './slice/queryReducer';
-import { apiSlice } from './apiSlice/charactersApi';
+import querySlice from './slice/querySlice';
+import { apiSlice } from './apiSlice/apiSlice';
+import loadingSlice from './slice/loadingSlice';
 
 export const store = configureStore({
   reducer: {
-    query: queryReducer,
+    query: querySlice,
+    loading: loadingSlice,
     [apiSlice.reducerPath]: apiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
