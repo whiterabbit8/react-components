@@ -10,10 +10,10 @@ import './detailedCard.scss';
 
 export default function DetailedCard(): JSX.Element {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { data } = useGetCharacterByIdQuery(
-    `${searchParams.get('id')}`
+  const { data } = useGetCharacterByIdQuery(`${searchParams.get('id')}`);
+  const isLoading = useSelector(
+    (state: RootState) => state.loading.isDetailsLoading
   );
-  const isLoading = useSelector((state: RootState) => state.loading.isDetailsLoading)
 
   return (
     <div className="details">

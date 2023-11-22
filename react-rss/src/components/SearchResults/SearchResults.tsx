@@ -19,7 +19,9 @@ export default function SearchResults(): JSX.Element {
     name: query,
     page: searchParams.get('page'),
   });
-  const isLoading = useSelector((state: RootState) => state.loading.isResultsLoading)
+  const isLoading = useSelector(
+    (state: RootState) => state.loading.isResultsLoading
+  );
 
   useEffect(() => {
     navigate(`../react-rss/?page=${searchParams.get('page')}`);
