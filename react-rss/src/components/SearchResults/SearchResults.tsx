@@ -15,10 +15,11 @@ export default function SearchResults(): JSX.Element {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams({ page: '1' });
   const query = useSelector((state: RootState) => state.query.value);
-  const { data, isLoading, isError } = useGetCharactersQuery({
+  const { data, isError } = useGetCharactersQuery({
     name: query,
     page: searchParams.get('page'),
   });
+  const isLoading = useSelector((state: RootState) => state.loading.isResultsLoading)
 
   useEffect(() => {
     navigate(`../react-rss/?page=${searchParams.get('page')}`);

@@ -1,16 +1,19 @@
 import { useSearchParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import DetailsProps from '../DetailedProps/DetailedProps';
 import DetailsHeader from '../DetailedHeader/DetailedHeader';
 import Loader from '../Loader/Loader';
 import { useGetCharacterByIdQuery } from '../../store/apiSlice/apiSlice';
+import { RootState } from '../../store/store';
 
 import './detailedCard.scss';
 
 export default function DetailedCard(): JSX.Element {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { data, isLoading } = useGetCharacterByIdQuery(
+  const { data } = useGetCharacterByIdQuery(
     `${searchParams.get('id')}`
   );
+  const isLoading = useSelector((state: RootState) => state.loading.isDetailsLoading)
 
   return (
     <div className="details">
