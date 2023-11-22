@@ -11,12 +11,12 @@ type PerPageNumberParams = {
 export default function PerPageNumber({
   displayedValue,
 }: PerPageNumberParams): JSX.Element {
-  const perPage = useSelector((state: RootState) => state.perPage.value)
+  const perPage = useSelector((state: RootState) => state.perPage.value);
   const dispatch = useDispatch();
 
   const handleClick = (value: number) => {
-    dispatch(setPerPage(value))
-  }
+    dispatch(setPerPage(value));
+  };
 
   return (
     <>
@@ -25,6 +25,7 @@ export default function PerPageNumber({
         id={`${displayedValue}`}
         className="per-page__number-input"
         checked={perPage === displayedValue}
+        onChange={() => {}}
       />
       <label
         htmlFor="5"
