@@ -1,0 +1,12 @@
+.loader-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2em;
+  grid-area: results;
+}
+
+.loader {
+  width: 200px;
+  height: 200px;
+}
