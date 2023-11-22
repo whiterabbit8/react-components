@@ -3,6 +3,7 @@ import { Outlet, useSearchParams } from 'react-router-dom';
 import SearchResults from '../../components/SearchResults/SearchResults';
 import SearchInput from '../../components/SearchInput/SearchInput';
 import ErrorButton from '../../components/ErrorButton/ErrorButton';
+import ItemsPerPage from '../../components/ItemsPerPage/ItemsPerPage';
 
 import logo from '../../assets/logo.svg';
 
@@ -25,6 +26,7 @@ export default function Home(): JSX.Element {
       <img className="logo" src={logo} alt="logo" />
       <div className={style}>
         <SearchInput />
+        <ItemsPerPage />
         <ErrorButton />
         <SearchResults />
         {searchParams.get('id') && <Outlet />}

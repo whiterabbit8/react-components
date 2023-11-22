@@ -1,0 +1,42 @@
+@import '../../variables.scss';
+
+.per-page {
+  height: fit-content;
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+  margin: 0 auto;
+  grid-area: per-page;
+
+  &__header {
+    font-size: 1.1em;
+    font-weight: 700;
+  }
+
+  &__number {
+    width: 2em;
+    height: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: $blue-transparent;
+    color: $font-color;
+    font-size: 1em;
+    font-weight: 700;
+    transition: 0.3s;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $blue-color;
+    }
+  }
+
+  &__number-input {
+    display: none;
+
+    &:checked + .per-page__number {
+      background: $orange-color;
+    }
+  }
+}

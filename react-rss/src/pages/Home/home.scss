@@ -15,14 +15,14 @@
   display: grid;
   grid-template-rows: 88px 72px auto;
   grid-template-areas:
-    'searchbar'
-    'error-button'
-    'results';
+    'searchbar searchbar'
+    'per-page error-button'
+    'results results';
 
   &_details {
     grid-template-areas:
-      'searchbar details'
-      'error-button details'
-      'results details';
+      'searchbar searchbar details'
+      'per-page error-button details'
+      'results results details';
   }
 }
