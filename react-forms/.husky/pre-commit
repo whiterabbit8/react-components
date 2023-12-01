@@ -1,5 +1,5 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-cd ./react-rss
-npm run format:fix && npm run fix
+cd ./react-forms
+npm run fix && npm run lint:fix
