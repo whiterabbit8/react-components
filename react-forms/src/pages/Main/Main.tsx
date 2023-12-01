@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export default function Main(): JSX.Element {
   return (
@@ -7,5 +7,5 @@ export default function Main(): JSX.Element {
       <Link to={'form'}>Form</Link>
       <Link to={'live-form'}>React Hook Form</Link>
     </div>
-  )
+  );
 }

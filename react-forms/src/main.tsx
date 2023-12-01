@@ -20,7 +20,7 @@ const router = createBrowserRouter([
     path: 'live-form/',
     element: <LiveForm />,
   },
-])
+]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
