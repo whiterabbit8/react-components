@@ -7,7 +7,7 @@ export interface FormState {
   password: string;
   gender: string;
   acceptance: boolean;
-};
+}
 
 const initialState: FormState = {
   name: '',
@@ -40,9 +40,16 @@ export const formSlice = createSlice({
     setAcceptance: (state, action: PayloadAction<boolean>) => {
       state.acceptance = action.payload;
     },
-  }
+  },
 });
 
-export const { setName, setAge, setEmail, setPassword, setGender, setAcceptance } = formSlice.actions;
+export const {
+  setName,
+  setAge,
+  setEmail,
+  setPassword,
+  setGender,
+  setAcceptance,
+} = formSlice.actions;
 
 export default formSlice.reducer;

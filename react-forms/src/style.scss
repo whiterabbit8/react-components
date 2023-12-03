@@ -23,9 +23,9 @@ body {
   width: 100vw;
   height: 95vh;
   display: flex;
-  align-items: center;
   justify-content: center;
   font-family: 'Roboto', sans-serif;
+  background: #fff;
 }
 
 a,
@@ -34,14 +34,31 @@ a:visited {
   text-decoration: none;
 }
 
-h1 {
-  font-size: 1em;
-}
-
 .container {
   display: flex;
   flex-direction: column;
-  font-size: 4em;
+}
+
+.nav-bar {
+  display: flex;
+  gap: 40px;
+  padding: 20px;
+}
+
+.nav-btn {
+  height: 1.8em;
+  padding: 0 0.75em;
+  border: none;
+  border-radius: 0.9em;
+  background: transparent;
+  font-size: 1.5em;
   font-weight: 700;
-  text-align: center;
+  transition: 0.3s;
+  cursor: pointer;
+
+  &:hover,
+  &:disabled {
+    background: #3b71ca;
+    color: #fff;
+  }
 }

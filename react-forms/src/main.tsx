@@ -6,24 +6,30 @@ import Main from './pages/Main/Main';
 import './style.scss';
 import Form from './pages/Form/Form';
 import LiveForm from './pages/LiveForm/LiveForm';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Main />,
-  },
-  {
-    path: 'form/',
-    element: <Form />,
-  },
-  {
-    path: 'live-form/',
-    element: <LiveForm />,
+    children: [
+      {
+        path: 'form/',
+        element: <Form />,
+      },
+      {
+        path: 'live-form/',
+        element: <LiveForm />,
+      },
+    ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
