@@ -77,13 +77,23 @@ a:visited {
 }
 
 .form-element {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   display: flex;
   flex-direction: column;
   align-items: start;
 
   &.checkbox {
-    flex-direction: row;
+    position: relative;
+    left: 10px;
+
+    input {
+      position: absolute;
+      left: -25px;
+    }
+
+    .error-msg {
+      margin-left: -23px;
+    }
   }
 }
 
@@ -96,6 +106,7 @@ a:visited {
 .submit-btn {
   height: 2em;
   padding: 0 1em;
+  margin-top: 20px;
   border: none;
   border-radius: 1em;
   background: #14a44d;
@@ -108,4 +119,12 @@ a:visited {
   &:hover {
     background: #137f3e;
   }
+}
+
+.error-msg {
+  height: 1em;
+  margin: 0;
+  font-size: 0.9em;
+  font-weight: 400;
+  color: #ff0000;
 }

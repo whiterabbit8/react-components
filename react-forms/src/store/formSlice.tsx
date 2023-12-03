@@ -2,9 +2,10 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface FormData {
   name: string;
-  age: number;
+  age: string;
   email: string;
   password: string;
+  passwordConfirm?: string;
   gender: string;
   acceptance: boolean;
 }
@@ -47,12 +48,10 @@ export const formSlice = createSlice({
     // },
     setSubmitted: (state, action: PayloadAction<FormData>) => {
       state.submitted.push(action.payload);
-    }
+    },
   },
 });
 
-export const {
-  setSubmitted
-} = formSlice.actions;
+export const { setSubmitted } = formSlice.actions;
 
 export default formSlice.reducer;
