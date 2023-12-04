@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import * as Yup from 'yup';
-import { FormData } from '../../store/formSlice';
 import { ValidationError } from 'yup';
+import { FormData, setSubmitted } from '../../store/formSlice';
+import schema from '../../utils/schema';
+import { useDispatch } from 'react-redux';
 
 export default function Form(): JSX.Element {
   const [formData, setFormData] = useState<FormData>({
@@ -20,6 +21,8 @@ export default function Form(): JSX.Element {
   const [passswordConfirmErr, setPasswordConfirmErr] = useState('');
   const [genderErr, setGenderErr] = useState('');
   const [aceptanceErr, setAcceptanceErr] = useState('');
+
+  const dispatch = useDispatch();
 
   const setErrors = (error: ValidationError) => {
     if (error.path === 'name') {
@@ -49,36 +52,13 @@ export default function Form(): JSX.Element {
     setAcceptanceErr('');
   };
 
-  const schema = Yup.object().shape({
-    name: Yup.string()
-      .matches(/^[A-Z][a-z]*$/, 'Should start from uppercase letter')
-      .required('Please enter the name'),
-    age: Yup.string()
-      .matches(/[0-9]/, 'Should be a number')
-      .required('Please enter the age'),
-    email: Yup.string()
-      .email('Please enter valid email')
-      .required('Please enter email'),
-    password: Yup.string()
-      .matches(/[0-9]/, 'Should contain number')
-      .uppercase('Should contain uppercase letter')
-      .lowercase('Should contain lowercase letter')
-      .matches(/[!@#$%^&*?]/, 'Should contain special symbol')
-      .required('Please enter the password'),
-    passwordConfirm: Yup.string().oneOf(
-      [Yup.ref('password')],
-      'Passwords must match'
-    ),
-    gender: Yup.string().matches(/(Male|Female)/, 'Please choose gender'),
-    acceptance: Yup.boolean().oneOf([true], 'Please accept T&C'),
-  });
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     resetErrors();
 
     try {
       await schema.validate(formData, { abortEarly: false });
+      dispatch(setSubmitted(formData))
     } catch (errors) {
       if (errors instanceof ValidationError) {
         errors.inner.forEach((error) => {
@@ -133,10 +113,10 @@ export default function Form(): JSX.Element {
         <p className="error-msg">{passwordErr}</p>
       </div>
       <div className="form-element">
-        <label htmlFor="password-confirm">Confirm password:</label>
+        <label htmlFor="passwordConfirm">Confirm password:</label>
         <input
           type="text"
-          name="password-confirm"
+          name="passwordConfirm"
           className="input"
           onChange={(e) =>
             setFormData({ ...formData, passwordConfirm: e.target.value })
@@ -145,9 +125,9 @@ export default function Form(): JSX.Element {
         <p className="error-msg">{passswordConfirmErr}</p>
       </div>
       <div className="form-element">
-        <label htmlFor="password-confirm">Gender:</label>
+        <label htmlFor="gender">Gender:</label>
         <select
-          name="password-confirm"
+          name="gender"
           className="input"
           onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
         >
